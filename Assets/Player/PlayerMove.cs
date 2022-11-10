@@ -6,27 +6,42 @@ using UniRx.Triggers;
 
 namespace Player
 {
-    [RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerMove : MonoBehaviour
     {
         Rigidbody rBody; // リジッドボディを使うための宣言
 
-        // Start is called before the first frame update
+        //上0 左1 下2 右3
+        public IReadOnlyReactiveProperty<int> Direction => _dire;
+        private readonly ReactiveProperty<int> _dire = new ReactiveProperty<int>();
         void Start()
         {
             rBody = this.gameObject.GetComponent<Rigidbody>();
 
             InputManager.I.OnW
-                .Subscribe(_ => Move())
-                .AddTo(this);
+            .Subscribe(_ => Move(0))
+            .AddTo(this);
+
+            InputManager.I.OnA
+            .Subscribe(_ => Move(1))
+            .AddTo(this);
+
+            InputManager.I.OnS
+            .Subscribe(_ => Move(2))
+            .AddTo(this);
+
+            InputManager.I.OnD
+            .Subscribe(_ => Move(3))
+            .AddTo(this);
         }
 
-        void Move()
+        void Move(int n)
         {
-            if (jumpNow == true) return;
+            _dire.Value = n;
+            // if (jumpNow == true) return;
 
-            rBody.AddForce(transform.up * jumpPower, ForceMode.Impulse);
-            jumpNow = true;
+            // rBody.AddForce(transform.up * jumpPower, ForceMode.Impulse);
+            // jumpNow = true;
             
         }
 
