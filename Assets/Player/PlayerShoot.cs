@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using UniRx;
 
 namespace DesignPatterns.ObjectPool
 {
@@ -66,32 +67,33 @@ namespace DesignPatterns.ObjectPool
             Destroy(pooledObject.gameObject);
         }
 
-        // private void FixedUpdate()
-        // {
-        //     // shoot if we have exceeded delay
-        //      if (Input.GetKeyDown("space"))
-        //     if (Input.GetdownButton("Fire1") && Time.time > nextTimeToShoot && objectPool != null)
-        //     {
+        void Start(){
+            InputManager.I.OnSpace
+            //where(射撃状態)
+            .Subscribe(_ => Shoot())
+            .AddTo(this);
+        }
 
-        //         // get a pooled object instead of instantiating
-        //         RevisedProjectile bulletObject = objectPool.Get();
+        void Shoot(){
 
-        //         if (bulletObject == null)
-        //             return;
+            // if (Input.GetdownButton("Fire1") && Time.time > nextTimeToShoot && objectPool != null)
+            // // get a pooled object instead of instantiating
+            //     RevisedProjectile bulletObject = objectPool.Get();
 
-        //         // align to gun barrel/muzzle position
-        //         bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
+            //     if (bulletObject == null)
+            //         return;
 
-        //         // move projectile forward
-        //         bulletObject.GetComponent<Rigidbody>().AddForce(bulletObject.transform.forward * muzzleVelocity, ForceMode.Acceleration);
+            //     // align to gun barrel/muzzle position
+            //     bulletObject.transform.SetPositionAndRotation(muzzlePosition.position, muzzlePosition.rotation);
 
-        //         // turn off after a few seconds
-        //         bulletObject.Deactivate();
+            //     // move projectile forward
+            //     bulletObject.GetComponent<Rigidbody>().AddForce(bulletObject.transform.forward * muzzleVelocity, ForceMode.Acceleration);
 
-        //         // set cooldown delay
-        //         nextTimeToShoot = Time.time + cooldownWindow;
+            //     // turn off after a few seconds
+            //     bulletObject.Deactivate();
 
-        //     }
-        // }
+            //     // set cooldown delay
+            //     nextTimeToShoot = Time.time + cooldownWindow;
+        }
     }
 }

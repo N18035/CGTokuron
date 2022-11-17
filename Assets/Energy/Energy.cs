@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Energy : MonoBehaviour
+public class Energy : MonoBehaviour,IEnergy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public void GetEnergy(){
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
+}
+
+public interface IEnergy
+{
+    public void GetEnergy();
 }
