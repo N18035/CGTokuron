@@ -24,10 +24,10 @@ public class InputManager :Singleton<InputManager>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _space.OnNext(Unit.Default);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     _space.OnNext(Unit.Default);
+        // }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -47,6 +47,5 @@ public class InputManager :Singleton<InputManager>
         {
             _d.OnNext(Unit.Default);
         }
-
     }
 }
