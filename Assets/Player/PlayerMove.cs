@@ -9,40 +9,58 @@ namespace Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerMove : MonoBehaviour
     {
-        Rigidbody rBody; // リジッドボディを使うための宣言
+        Rigidbody2D rBody; // リジッドボディを使うための宣言
+        Vector2 velo = Vector2.zero;
+        float speed=3;
 
         //上0 左1 下2 右3
-        public IReadOnlyReactiveProperty<int> Direction => _dire;
-        private readonly ReactiveProperty<int> _dire = new ReactiveProperty<int>();
+        public IReadOnlyReactiveProperty<PlayerLookDirection> Direction => _dire;
+        private readonly ReactiveProperty<PlayerLookDirection> _dire = new ReactiveProperty<PlayerLookDirection>();
+
         void Start()
         {
-            rBody = this.gameObject.GetComponent<Rigidbody>();
+            rBody = this.gameObject.GetComponent<Rigidbody2D>();
 
             InputManager.I.OnW
-            .Subscribe(_ => Move(0))
+            .Subscribe(_ => Move(0,1,PlayerLookDirection.Top))
             .AddTo(this);
 
             InputManager.I.OnA
-            .Subscribe(_ => Move(1))
+            .Subscribe(_ => Move(-1,0,PlayerLookDirection.Left))
             .AddTo(this);
 
             InputManager.I.OnS
-            .Subscribe(_ => Move(2))
+            .Subscribe(_ => Move(0,-1,PlayerLookDirection.Bottom))
             .AddTo(this);
 
             InputManager.I.OnD
-            .Subscribe(_ => Move(3))
+            .Subscribe(_ => Move(1,0,PlayerLookDirection.Right))
             .AddTo(this);
         }
 
-        void Move(int n)
+        void Move(int x,int y,PlayerLookDirection d)
         {
-            _dire.Value = n;
-            // if (jumpNow == true) return;
+            _dire.Value = d;
 
-            // rBody.AddForce(transform.up * jumpPower, ForceMode.Impulse);
-            // jumpNow = true;
+            velo = new Vector2(x * speed, y * speed);
             
+        }
+
+
+        void FixedUpdate()
+        {
+            rBody.velocity = velo;
+        }
+
+        private void Update()
+        {
+            var pos = transform.position;
+
+            // x軸方向の移動範囲制限
+            pos.x = Mathf.Clamp(pos.x, -10, 10);
+            pos.y = Mathf.Clamp(pos.y, -10, 10);
+
+            transform.position = pos;
         }
 
     }
