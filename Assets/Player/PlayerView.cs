@@ -6,7 +6,7 @@ using UniRx;
 
 namespace Player
 {
-        public class PlayerView : MonoBehaviour
+    public class PlayerView : MonoBehaviour
     {
         [SerializeField] PlayerMove move;
         [SerializeField] SpriteRenderer renderer;
@@ -18,9 +18,18 @@ namespace Player
             .AddTo(this);
         }
 
-        void ChangeModel(int d){
-            renderer.sprite = playerImage[d];
+        void ChangeModel(PlayerLookDirection d){
+            renderer.sprite = playerImage[(int)d];
         }
+    }
+
+
+    public enum PlayerLookDirection
+    {
+        Top = 0,
+        Bottom = 1,
+        Left = 2,
+        Right = 3
     }
 }
 
