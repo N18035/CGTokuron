@@ -10,6 +10,8 @@ public interface IEnergy
 public class Energy : MonoBehaviour,IEnergy
 {
     public void GetEnergy(){
+        ScoreManager.I.AddScore();
+        SEManager.I.GetEnergy();
         Destroy(gameObject);
     }
 }
