@@ -14,7 +14,7 @@ public class ScoreView : MonoBehaviour
     {
 		// textMeshProUGUI = GetComponent<TextMeshProUGUI>();
 
-        // manager.Score
+        // ScoreManager.I.Score
         // .Subscribe(s => text.SetText("r"))
         // .AddTo(this);
     }
