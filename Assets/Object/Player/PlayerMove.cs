@@ -71,7 +71,7 @@ namespace Player
             var pos = transform.position;
             // x軸方向の移動範囲制限
             pos.x = Mathf.Clamp(pos.x, -8, 8);
-            pos.y = Mathf.Clamp(pos.y, -4, 4);
+            pos.y = Mathf.Clamp(pos.y, -3.5f, 3.5f);
 
             transform.position = pos;
         }

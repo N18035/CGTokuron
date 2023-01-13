@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using UniRx;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
+    [SerializeField] AudioSource audioSource;
+    public IReadOnlyReactiveProperty<bool> State => _state;
+
+    private readonly ReactiveProperty<bool> _state = new ReactiveProperty<bool>(false);
+
     void Start()
     {
-        
+        GameStart().Forget();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private async UniTaskVoid GameStart(){
+        //ゲーム中
+        await UniTask.WaitWhile(() => audioSource.isPlaying);
+        // _state.Value = false;
+        _state.Value = true;
         
     }
 }
