@@ -7,15 +7,12 @@ using UniRx;
 
 public class ScoreView : MonoBehaviour
 {
-   	// private TextMeshProUGUI text;
-    [SerializeField] ScoreManager manager;
+   	[SerializeField]private TextMeshProUGUI texto;
  
     void Start()
     {
-		// textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-
-        // ScoreManager.I.Score
-        // .Subscribe(s => text.SetText("r"))
-        // .AddTo(this);
+        ScoreManager.I.Score
+        .Subscribe(s => texto.text = s.ToString())
+        .AddTo(this);
     }
 }

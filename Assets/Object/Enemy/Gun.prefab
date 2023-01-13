@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b90f0007325078479229e3d8c6fca9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4317231038109615019, guid: a18c0b1d383129341bfcf69886a6db2d, type: 3}
+  muzzlePosition: {fileID: 7769903633791177116}
+  muzzleVelocity: 700
 --- !u!1 &7769903633981681088
 GameObject:
   m_ObjectHideFlags: 0

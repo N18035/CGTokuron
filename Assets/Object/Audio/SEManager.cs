@@ -17,7 +17,7 @@ public class SEManager : Singleton<SEManager>
     public List<AudioClip> SE = new List<AudioClip>(5);
 
     public void Fire(){
-        _audioSource.volume = 1f;
+        _audioSource.volume = .7f;
         _audioSource.PlayOneShot(SE[0]);
     } 
 

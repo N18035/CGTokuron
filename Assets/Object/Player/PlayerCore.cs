@@ -18,10 +18,19 @@ public class PlayerCore : MonoBehaviour
         .Subscribe(x =>{
             if(x.gameObject.TryGetComponent<IEnergy>(out var energy)){
                 energy.GetEnergy();
-
-                //状態をゲット状態へ変更
                 //動きを遅くする
-                //発射可能
+            }  
+        })
+        .AddTo(this);
+
+
+        co.OnTriggerEnter2DAsObservable()
+        .Throttle(TimeSpan.FromMilliseconds(10))
+        .Subscribe(x =>{
+            if(x.gameObject.TryGetComponent<IDamage>(out var damage)){
+                damage.GetDamage();
+                ShakeCamera.I.Shake(0.25f, 0.2f);
+                //無敵
             }  
         })
         .AddTo(this);

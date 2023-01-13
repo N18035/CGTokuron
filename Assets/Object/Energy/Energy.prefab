@@ -72,6 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9940d2ff28577446b88f2fbd9326a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 500
+  col: {fileID: 5065892938478923309}
 --- !u!1 &5065892940211939864
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,6 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065892940211939867}
   - component: {fileID: 5065892940211939866}
+  - component: {fileID: 6385056508044486549}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -145,7 +148,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: cbe0f6b2e1836dc4facedf81754c5d69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04a0c343bc879a94d969645a7ab0882b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,3 +159,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6385056508044486549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5065892940211939864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89aa51d3361f7948af1c024c9cfd8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img1: {fileID: 21300000, guid: 04a0c343bc879a94d969645a7ab0882b, type: 3}
+  img2: {fileID: 21300000, guid: fe7b8389995e9dc498129068f1c9851b, type: 3}
+  renderer: {fileID: 5065892940211939866}
