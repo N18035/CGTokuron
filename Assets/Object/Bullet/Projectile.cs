@@ -11,13 +11,12 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] Rigidbody2D rBody; // リジッドボディを使うための宣言
 
-
     private IObjectPool<GameObject> objectPool;
     
-    // ObjectPool への参照を Projectile に与える public プロパティ。
+    // ObjectPool への参照を与える public プロパティ。
     public IObjectPool<GameObject> ObjectPool { set => objectPool = value; }
 
-    public void hoge(){
+    public void Go(){
         velo = new Vector2(0, 1);
     }
 
@@ -25,23 +24,4 @@ public class Projectile : MonoBehaviour
     {
         rBody.velocity = velo;
     }
-
-    // public void Deactivate()
-    // {
-    //     StartCoroutine(DeactivateRoutine(timeoutDelay));
-    // }
-
-    // IEnumerator DeactivateRoutine(float delay)
-    // {
-    //     yield return new WaitForSeconds(delay);
-
-    //     // 動きを止める
-    //     Rigidbody2D rBody = GetComponent<Rigidbody2D>();
-    //     rBody.velocity = new Vector2(0f, 0f);
-    //     //角度はいらん
-    //     // rBody.angularVelocity = new Vector2(0f, 0f);
-
-    //     // release the projectile back to the pool
-    //     objectPool.Release(this.gameObject);
-    // }
 }
